@@ -10,7 +10,7 @@ export const App = () => {
     <TwitterFollowCard 
         isFollowing={true}
         userName="Thor" 
-        name="William Cardoza Dubon"/>
+        name="William Cardoza Dubón"/>
     
     <TwitterFollowCard 
         isFollowing={false} 
