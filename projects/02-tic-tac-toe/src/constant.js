@@ -1,9 +1,11 @@
 
+// Asignación de los turnos
 export const TURNS = {
-    X: "x",
-    O: "o"
+    X: "❌",
+    O: "💍"
 };
   
+// Asignación de posiciones ganadoras
 export const WINNER_COMBOS = [
     [0, 1, 2],
     [3, 4, 5],
