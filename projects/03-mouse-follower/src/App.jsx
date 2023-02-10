@@ -3,19 +3,31 @@ import './App.css'
 
 function App () {
   const [enabled, setEnabled] = useState(false)
-  const [position, setPosition] = useState({x: 0, y: 0})
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
+  const handleClick = () => {
+    setEnabled(!enabled)
+    setPosition({ x: 0, y: 0 })
+  }
 
   useEffect(() => {
     console.log('efecto', { enabled })
 
+    // función que detecta la posición del cursor
     const handleMove = (event) => {
       const { clientX, clientY } = event
       console.log('handleMov', { clientX, clientY })
       setPosition({ x: clientX, y: clientY })
     }
 
+    // cnfirma si el boton esta activo
     if (enabled) {
       window.addEventListener('pointermove', handleMove)
+    }
+
+    // cleanup: se encarga de limpiar el componente
+    return () => {
+      window.removeEventListener('pointermove', handleMove)
     }
   }, [enabled])
 
@@ -35,7 +47,7 @@ function App () {
         transform: `translate(${position.x}px, ${position.y}px)`
       }}
       />
-      <button onClick={() => setEnabled(!enabled)}>
+      <button onClick={handleClick}>
         {enabled ? 'Desactivar' : 'Activar'} seguir Puntero
       </button>
     </main>
